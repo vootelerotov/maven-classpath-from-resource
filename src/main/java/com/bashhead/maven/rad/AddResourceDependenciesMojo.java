@@ -1,4 +1,4 @@
-package org.bashhead.maven.rad;
+package com.bashhead.maven.rad;
 
 import java.io.File;
 import java.util.ArrayList;

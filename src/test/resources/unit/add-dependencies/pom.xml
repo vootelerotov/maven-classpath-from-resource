@@ -10,7 +10,7 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.bashhead.maven</groupId>
+        <groupId>com.bashhead.maven</groupId>
         <artifactId>resources-as-dependencies-maven-plugin</artifactId>
         <configuration>
           <fileSets>

@@ -8,7 +8,7 @@
   </parent>
   
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.bashhead.maven</groupId>
+  <groupId>com.bashhead.maven</groupId>
   <artifactId>resources-as-dependencies-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
   <version>1.0-SNAPSHOT</version>
@@ -16,7 +16,7 @@
   <description>Maven plugin for adding all jars in folders as compile dependencies</description>
   <url>https://github.com/madisparn/maven-classpath-from-resource</url>
   <inceptionYear>2016</inceptionYear>
-
+  
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.6</maven.compiler.source>
@@ -25,6 +25,7 @@
     <checkstyle.violation.ignore>RegexpHeader</checkstyle.violation.ignore>
     <rat.skip>true</rat.skip>
     <remoteresources.skip>true</remoteresources.skip>
+    <gpg.useagent>false</gpg.useagent>
   </properties>
 
   <prerequisites>
@@ -97,6 +98,19 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
      </plugins>
   </build>
 
@@ -126,23 +140,30 @@
       <connection>scm:git:${project.url}.git</connection>
       <developerConnection>${project.scm.connection}</developerConnection>
   </scm>
-  
+
   <developers>
     <developer>
       <id>madis.parn</id>
       <name>Madis Parn</name>
     </developer>
   </developers>
-  
+
   <mailingLists>
-    <mailingList>
-      <name>None</name>
-    </mailingList>
+    <mailingList />
   </mailingLists>
-  
+
+  <organization />
+  <ciManagement />
+
   <distributionManagement>
-    <repository />
-    <snapshotRepository />
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
     <site />
   </distributionManagement>
   

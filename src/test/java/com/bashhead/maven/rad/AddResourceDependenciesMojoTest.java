@@ -1,4 +1,4 @@
-package org.bashhead.maven.rad;
+package com.bashhead.maven.rad;
 
 import static org.codehaus.plexus.PlexusTestCase.getBasedir;
 import static org.hamcrest.Matchers.hasItem;
