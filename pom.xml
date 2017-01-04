@@ -139,5 +139,33 @@
       <name>None</name>
     </mailingList>
   </mailingLists>
+  
+  <distributionManagement>
+    <repository />
+    <snapshotRepository />
+    <site />
+  </distributionManagement>
+  
+  <profiles>
+    <profile>
+      <id>bintray-bashhead-default</id>
+      <properties>
+        <bintray.subject>bashhead</bintray.subject>
+        <bintray.repo>default</bintray.repo>
+        <bintray.package>com.bashhead</bintray.package>
+        <bintray.url>https://api.bintray.com/maven/${bintray.subject}/${bintray.repo}/${bintray.package}/;publish=1</bintray.url>
+      </properties>
+      <distributionManagement>
+        <repository>
+            <id>bintray-bashhead-default</id>
+            <url>${bintray.url}</url>
+        </repository>
+        <snapshotRepository>
+            <id>bintray-bashhead-default</id>
+            <url>${bintray.url}</url>
+        </snapshotRepository>
+      </distributionManagement>
+    </profile>
+  </profiles>
 
 </project>
