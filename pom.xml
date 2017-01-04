@@ -1,14 +1,30 @@
+<?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <parent>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-plugins</artifactId>
+    <version>30</version>
+  </parent>
+  
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.bashhead.maven</groupId>
   <artifactId>resources-as-dependencies-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
   <version>1.0-SNAPSHOT</version>
+  
+  <description>Maven plugin for adding all jars in folders as compile dependencies</description>
+  <url>https://github.com/madisparn/maven-classpath-from-resource</url>
+  <inceptionYear>2016</inceptionYear>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <mavenVersion>3.0</mavenVersion>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+    <mavenVersion>3.2.5</mavenVersion>
+    <checkstyle.violation.ignore>RegexpHeader</checkstyle.violation.ignore>
+    <rat.skip>true</rat.skip>
+    <remoteresources.skip>true</remoteresources.skip>
   </properties>
 
   <prerequisites>
@@ -21,13 +37,11 @@
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-core</artifactId>
       <version>${mavenVersion}</version>
-      <scope>provided</scope>
     </dependency>
 
     <dependency>
       <groupId>org.apache.maven.plugin-tools</groupId>
       <artifactId>maven-plugin-annotations</artifactId>
-      <version>${mavenVersion}</version>
       <scope>provided</scope>
     </dependency>
 
@@ -37,21 +51,93 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-library</artifactId>
+      <version>1.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugin-testing</groupId>
+      <artifactId>maven-plugin-testing-harness</artifactId>
+      <version>3.3.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-compat</artifactId>
+      <version>${mavenVersion}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.5.1</version>
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-        </configuration>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+     </plugins>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-plugin-plugin</artifactId>
       </plugin>
     </plugins>
+  </reporting>
 
-  </build>
+  <issueManagement>
+      <url>${project.url}/issues</url>
+      <system>GitHub Issues</system>
+  </issueManagement>
+
+  <licenses>
+      <license>
+          <name>MIT License</name>
+          <url>https://www.opensource.org/licenses/mit-license.php</url>
+      </license>
+  </licenses>
+
+  <scm>
+      <url>>${project.url}</url>
+      <connection>scm:git:${project.url}.git</connection>
+      <developerConnection>${project.scm.connection}</developerConnection>
+  </scm>
+  
+  <developers>
+    <developer>
+      <id>madis.parn</id>
+      <name>Madis Parn</name>
+    </developer>
+  </developers>
+  
+  <mailingLists>
+    <mailingList>
+      <name>None</name>
+    </mailingList>
+  </mailingLists>
 
 </project>

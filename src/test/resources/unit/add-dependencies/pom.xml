@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.bashhead.maven.test</groupId>
+  <artifactId>add-dependencies-test</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.bashhead.maven</groupId>
+        <artifactId>resources-as-dependencies-maven-plugin</artifactId>
+        <configuration>
+          <fileSets>
+            <fileSet>
+              <directory>${project.basedir}/libs</directory>
+               <includes>
+                 <include>**/*.jar</include>
+                 <include>**/*.zip</include>
+                 <include>dep4*</include>
+               </includes>
+               <excludes>
+                 <exclude>**/ex_*</exclude>
+               </excludes>
+            </fileSet>
+          </fileSets>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
