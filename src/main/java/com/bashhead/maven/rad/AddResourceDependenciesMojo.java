@@ -92,7 +92,7 @@ public class AddResourceDependenciesMojo extends AbstractMojo
 
         List<String> fileExtension = fileExtension( file );
         DefaultArtifact d = new DefaultArtifact(
-                "local.dependency." + file.getParentFile().getName(),
+                "local.dependency." + getAbsolutePathAsPackage( file ),
                 fileExtension.get( 0 ),
                 "0.0.1",
                 Artifact.SCOPE_SYSTEM, fileExtension.get( 1 ), null,
@@ -100,6 +100,18 @@ public class AddResourceDependenciesMojo extends AbstractMojo
         d.setFile( file );
         d.setOptional( true );
         return d;
+    }
+
+    private String getAbsolutePathAsPackage( File file ) {
+        String absolutePath = file.getParentFile().getAbsolutePath();
+        return removeLeadingSeparator( absolutePath ).replace( File.separatorChar, '.' );
+    }
+
+    private String removeLeadingSeparator( String packageNameFromAbsolutePath ) {
+        if (packageNameFromAbsolutePath.startsWith( File.separator )) {
+            packageNameFromAbsolutePath = packageNameFromAbsolutePath.substring( 1 );
+        }
+        return packageNameFromAbsolutePath;
     }
 
     private List<String> fileExtension( File file )
