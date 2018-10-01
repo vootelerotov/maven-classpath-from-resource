@@ -102,13 +102,18 @@ public class AddResourceDependenciesMojo extends AbstractMojo
         return d;
     }
 
-    private String getAbsolutePathAsPackage( File file ) {
+    private String getAbsolutePathAsPackage( File file )
+    {
         String absolutePath = file.getParentFile().getAbsolutePath();
-        return removeLeadingSeparator( absolutePath ).replace( File.separatorChar, '.' );
+        return removeLeadingSeparator( absolutePath )
+            .replace( File.separatorChar, '.' )
+            .replace( ":", "" );
     }
 
-    private String removeLeadingSeparator( String packageNameFromAbsolutePath ) {
-        if (packageNameFromAbsolutePath.startsWith( File.separator )) {
+    private String removeLeadingSeparator( String packageNameFromAbsolutePath )
+    {
+        if ( packageNameFromAbsolutePath.startsWith( File.separator ) )
+        {
             packageNameFromAbsolutePath = packageNameFromAbsolutePath.substring( 1 );
         }
         return packageNameFromAbsolutePath;
