@@ -1,0 +1,8 @@
+version: 1.0.{build}
+image:
+- Visual Studio 2017
+- Ubuntu1804
+build_script:
+- mvn clean compile
+test_script:
+- mvn test
