@@ -10,7 +10,7 @@
   <groupId>com.bashhead.maven</groupId>
   <artifactId>resources-as-dependencies-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
-  <version>1.2-SNAPSHOT</version>
+  <version>1.1-SNAPSHOT</version>
   
   <description>Maven plugin for adding all jars in folders as compile dependencies</description>
   <url>https://github.com/madisparn/maven-classpath-from-resource</url>
